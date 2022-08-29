@@ -1,0 +1,30 @@
+span {
+    color:red;
+}
+div{
+    width: 400px;
+    height: 400px;
+    background-color: blanchedalmond;
+    border: 10px red solid;
+    margin: 10px;
+}
+table{
+    border: 2px red solid;
+    margin: 40px;
+}
+img{
+    width: 20px;
+    height: 20px;
+}
+.card_title{
+
+}
+.card_content{
+
+}
+.card_button{
+
+}
+.card_button--disabled{
+
+}

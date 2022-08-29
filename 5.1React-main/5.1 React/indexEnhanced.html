@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Hello, world.
+</body>
+<script>
+    // 如果有错误，停止运行；但是一定要执行最后一行 hello worl d.
+    var a = 1;
+    var b = 'abc';
+
+    function sum(a, b) {
+        if (isNaN(a)) {
+            return ;
+        }
+        if (isNaN(b)) {
+           return ;
+        }
+        return a + b;
+    }
+// hello world 会执行。 但是console.log不会执行；
+    // if failed, fail fast. 代码是平级的 不是一层层嵌套的，不像index.html里面的；
+    //Fail in scope; 创建了plusplusplus，把所有相同的任务，放一个function里面，这样function里面的错误就不会影响function后面的内容（hello world）
+    function plusPlusPlus() {
+        var result = sum(1, 'abc')
+        if (result === undefined) {
+            return;
+        }
+        console.log(result);
+        var resultPlus2 = sum(result, 2);
+        if (resultPlus2 === undefined) {
+            return;
+        }
+        console.log(resultPlus2);
+        var resultPlus2Plus3 = sum(resultPlus2, 3);
+        if (resultPlus2Plus3 === undefined) {
+            return;
+        }
+        console.log(resultPlus2Plus3);
+    }
+    plusPlusPlus();
+
+    // 所有的excpetion / error 处理都是昂贵的，CPU耗时长 ->底层的内存占用的问题
+    // try{
+    //     // 如果遇到错误，这里的代码没有被执行
+    //     var result = sum(1,'abc');
+    //     console.log(result);
+    //
+    //     var resultPlus2 = sum(result,2);
+    //     console.log(resultPlus2);
+    //
+    //     var resultPlus2Plus3 = sum(resultPlus2,3);
+    //     console.log(resultPlus2Plus3);
+    // } catch (error){
+    //     console.log(error);
+    //     console.log(`something wrong...`);
+    // }
+
+    //这一行一定要被执行
+    console.log('Hello world');
+
+
+</script>
+</html>

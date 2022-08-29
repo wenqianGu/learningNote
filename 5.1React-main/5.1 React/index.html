@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Hello world
+</body>
+<script>
+    var a = 1;
+    var b = 'abc';
+
+    function sum(a, b) {
+        // console.log(`a:${a}`);
+        // console.log(`b:${b}`);b
+        //debugger // 打断点/breakpoint，在chrome可以hover
+        if (isNaN(a)) {
+            console.log(`arg 1 is not a number`);
+            return;
+        }
+        if (isNaN(b)) {
+            console.log(`arg 2 is not a number`);
+            return;
+        }
+        return a + b;
+    }
+    var result = sum(0,0);
+    // var result = sum(a, b);
+    if(result !== undefined){
+        //上述的错误处理，没有中断执行；
+        console.log(`sum:${result}`);
+        var resultPlus2 = sum(result, 2);
+        if(resultPlus2 !== undefined){
+            console.log(`resultPlus2: ${resultPlus2}`);
+        } else {
+            console.log(`something wrong`);
+        }
+        var resultPlus2Plus3 = sum(resultPlus2,3);
+        if(resultPlus2Plus3 !== undefined){
+            console.log(`resultPlus2Plus3 :${resultPlus2Plus3}`)
+        } else {
+            console.log(`something wrong`);
+        }
+    } else{
+        console.log(`something wrong`);
+    }
+
+
+</script>
+</html>

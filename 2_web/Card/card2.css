@@ -1,0 +1,49 @@
+
+#card2{
+    width: 350px;
+    height: 416px;
+    background: url("../img/bg-1.png") no-repeat;
+    position: relative;
+    display: block;
+}
+.heart{
+    position: relative;
+    float: right;
+    margin:20px;
+}
+
+.content{
+   position: absolute;
+    bottom: 10px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.row-content{
+
+}
+.row-content > div{
+    display: inline-block;
+}
+
+.row-content .name{
+    font-size: 30px;
+    color: aliceblue;
+}
+
+.row-content .like{
+    margin-left: 20px;
+    width: 40px;
+    height: 100%;
+    background-color: palevioletred;
+    border-radius: 3px;
+    text-align: center;
+    color: aliceblue;
+}
+
+.content > p{
+    color: aliceblue;
+    font-size: 20px;
+    display: inline;
+}
+

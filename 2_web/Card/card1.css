@@ -1,0 +1,77 @@
+.card1-container{
+    width: 350px;
+    height: 350px;
+    background: #f6f1f1;
+    position: relative;
+    margin: auto;
+    border-radius: 0 0 10px 10px;
+}
+
+.header-picture{
+    background: url("../img/pic-1.jpg") no-repeat;
+    height: 50%;
+    position: relative;
+    border-radius: 10px 10px 0 0;
+}
+
+.center-button{
+    position: absolute;
+    top: 40%;
+    left: 42%;
+    margin: auto;
+}
+
+.right-top-picture{
+    position: absolute;
+    top:20px;
+    right:20px;
+}
+
+.icon-forward:hover{
+    width: 20px;
+    height: 20px;
+    content: url("../img/icon-forward-blue.svg");
+}
+
+.icon-heart:hover{
+    width: 20px;
+    height: 20px;
+    content:url("../img/icon-heart-blue.svg");
+}
+
+.right-top-picture img{
+    width: 20px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.text-area >h1{
+    font-size: 24px;
+    margin-left: 15px;
+}
+
+.text-area>p{
+    margin-left: 15px;
+    color: lightslategrey;
+    line-height: 1.5;
+}
+.bottom-button{
+    position: absolute;
+    bottom: 2px;
+    margin-left: 24px;
+    margin-bottom: 5px;
+    width: 290px;
+    padding: 10px;
+    background: blue;
+    border-radius: 8px;
+    word-spacing: 5px;
+    font-size: 18px;
+    color: white;
+    border-color: blue;
+    border-style: solid;
+}
+
+.bottom-button:hover{
+    background: transparent;
+    color: blue;
+}

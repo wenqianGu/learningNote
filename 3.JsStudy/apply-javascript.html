@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <title>使用 JavaScript 的示例</title>
+</head>
+<body>
+<button>点我呀</button>
+<button>点我呀</button>
+<button>点我呀</button>
+<script>
+  document.addEventListener("DOMContentLoaded", function (){
+    //创建新的标签P，内容填充为'你点击了这个按钮';
+    function createParagraph(){
+      let para = document.createElement('p');
+      para.textContent = '你点击了这个按钮';
+      document.body.appendChild(para);
+    }
+    // 这段代码是获取页面上的所有button标签，遍历button标签，并且绑定createParagraph的function
+    const buttons =document.querySelectorAll('button');
+    for(let i=0; i<buttons.length; i++){
+      buttons[i].addEventListener('click',createParagraph);
+    }
+    //下面的代码是获取单个button，并且添加时间监听器
+    // const button=document.querySelector('button');
+    // button.addEventListener('click', createParagraph)
+  });
+</script>
+</body>
+</html>

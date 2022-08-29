@@ -1,0 +1,59 @@
+.bg-picture-container{
+    background: url("../img/bg-1.png");
+    width: 356px;
+    height: 416px;
+    position: relative;
+}
+
+.card3-icon-heart{
+    position: absolute;
+    right: 30px;
+    top: 30px;
+}
+.card3-icon-heart:hover{
+    content: url("../img/icon-heart-blue.svg");
+}
+.footer-review{
+    width: 80%;
+    height: 38%;
+    background: #fcf8f8;
+    position: absolute;
+    bottom: -10px;
+    right:35px;
+    border-radius: 10px;
+}
+.card3-user-review{
+
+}
+
+.card3-user-review>img{
+    height: 18px;
+    margin-left: 8px;
+    margin-top: 10px;
+}
+
+.footer-review h1{
+    margin-left: 8px;
+    font-size: 26px;
+    margin-bottom: 2px;
+    margin-top: 10px;
+}
+
+.footer-review span{
+    margin-left: 8px;
+    display: inline;
+    font-size: 18px;
+    color: lightslategrey;
+}
+
+.footer-review h2{
+    margin-left: 8px;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.card3-link-icon{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}

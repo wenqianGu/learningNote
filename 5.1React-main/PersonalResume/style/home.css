@@ -1,0 +1,112 @@
+body {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    font-family: 'Montserrat', Helvetica, sans-serif;
+    color: #424242;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px;
+    font-size: 15px;
+    padding: 15px 0 0 0;
+}
+
+.nav__left {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.nav__right {
+    display: flex;
+}
+
+.nav__button {
+    margin: 0 10px;
+}
+
+.card {
+    width: 100%;
+    height: 500px;
+    border: 1px red solid;
+    border-radius: 10px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-top {
+    background-color: #2eca7f;
+    background-image: url("../assets/img/sp_main_bg.png");
+    background-size: contain;
+    height: 50%;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.avatar {
+    margin: 40px 0 0 5%;
+    width: 20%;
+    z-index: 9;
+}
+
+.personal__info {
+    width: 65%;
+    margin: 0 5%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.personal__info__name {
+    font-size: 54px;
+    color: white;
+    font-weight: 700;
+}
+
+.personal__info__title {
+    font-size: 18px;
+    color: white;
+    margin: 10px 0;
+}
+
+.personal__info__contacts__icon {
+    width: 32px;
+    height: 32px;
+    color: white;
+    margin: 8px;
+}
+
+.card_bottom {
+    height: 50%;
+    border: #2eca7f;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.card_bottom_AboutMe_title{
+    font-size: 24px;
+}
+.card_bottom_AboutMe_Me{
+    color:#2eca7f ;
+}
+.card_bottom_AboutMe {
+    margin: 5% 5%;
+    width: 45%
+}
+.card_bottom_AboutMe_introduction{
+    font-size: 15px;
+    font-weight: 400;
+}
+.card_bottom__personalInfo {
+    margin: 5% 5%;
+    width: 45%;
+}
