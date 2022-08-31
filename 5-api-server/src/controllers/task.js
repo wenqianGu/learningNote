@@ -16,6 +16,7 @@ const getAllTasks = (req, res) => {
         // res.status(200).json(filterTasks); 默认返回就是200 不需要status(200)
         res.json(filterTasks)
         return
+        return
     }
     res.json(tasks)
     return;
