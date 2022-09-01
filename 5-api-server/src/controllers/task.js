@@ -9,6 +9,52 @@ class Task {
 
 let id = 1
 
+/**
+ * @swagger
+ *  components:
+ *      schemas:
+ *          Task:
+ *              type: Object
+ *              required:
+ *                  - description
+ *              properities:
+ *                  id:
+ *                      type: string
+ *                      description: auto generated unique identifier
+ *              descritpion:
+ *                  type: string
+ *                  description: description of the task
+ *              done:
+ *                  type: boolean
+ *                  description: status of the task
+ *              example:
+ *                  id: 1
+ *                  description: task 1
+ *                  done: false 
+ */
+
+/***
+ * @swagger
+ * /tasks:
+ *  get:
+ *      summary: return all tasks
+ *      tags: [Tasks]
+ *      parameters:
+ *          -   name: description
+ *              in: query
+ *              description: filter tasks by description
+ *              schema:
+ *                  type: string
+ *      responses:
+ *          200:
+ *              description: array of tasks
+ *              content:
+ *                  application/json:
+ *                      schema:
+ *                          type: array
+ *                          items:
+ *                              $ref: '#/components/schemas/Task'
+ */
 const getAllTasks = (req, res) => {
     const { description } = req.query;
     if (description) {
