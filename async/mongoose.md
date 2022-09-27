@@ -91,3 +91,5 @@ const schema = new mongoose.Schema({name:String});
 const Model = mongoose.model('Model',schema);
 const document = new Model({name:'document'}); //创建document的时候，实例化的model 
 ```
+* 新建文件 管理数据库的连接 
+    - db.js under utils 
