@@ -24,7 +24,9 @@ fetchData('example.com/1',(data1) => {
 ```
 
 ## Promise
-
+* Promise queue / micro task queue
+    - macro task queue
+    - [p2],[cb1]
 ```js
 // promise
 /**
@@ -54,4 +56,38 @@ promise.then((date)=>{
 }).then().catch
 
 ```
+## Async await 
+* syntax sugar
+* async await 
+* finally ->无论前面失败或者成功，都会执行finally的code，finally不接受参数；不返回
 
+```js
+async function main() {
+    // fetchDataPromise().then().then()
+    try {
+        const result = await fetchDataPromise();
+        const result2 = await fetchDataPromise();
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+main();
+
+```
+
+## Mongoose
+* A ORM (Object relational mapper) or ODM (object data mapping).
+* In human language: make lifer easier when working with mongo database.
+* Mongoose底层用的是Mongo Client 
+    -In SQL, we will use Sequelize library. 
+* Schemas vs Models vs Documents 
+    - 当我们创建新的document的时候，mongoose会帮我们创建——ID
+    - model是我们在Mongoose里面注册的模型； 名字是注册在Mongoose里面的
+        - colletion的名字 -》 从model来的，小写 + 复数
+    - Schema 
+```jsx
+const schema = new mongoose.Schema({name:String});
+const Model = mongoose.model('Model',schema);
+const document = new Model({name:'document'}); //创建document的时候，实例化的model 
+```
