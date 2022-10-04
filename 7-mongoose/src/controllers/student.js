@@ -1,6 +1,23 @@
 const Course = require('../models/course');
 const Student = require('../models/student');
 
+
+
+function tryCatch(routeHandler){
+    //对所有的route handler都做try catch处理，
+    //问题：req res 从哪里来？
+    return async (req,res,next) =>{
+        try{
+            await routeHandler(req,res,next);
+         } catch(e) {
+             res.json(e);
+             //next(e);
+         }
+    }
+    
+    
+}
+
 //获取数据是从module获取的
 async function getAllStudents(req, res) {
     // db.students.find()
@@ -40,8 +57,17 @@ async function addStudent(req, res) {
     const { firstName, lastName, email } = req.body;
     // data validation
     const student = new Student({ firstName, lastName, email })
-    await student.save();
-    return res.status(201).json(student);
+    //try{
+        await student.save();
+        return res.status(201).json(student);
+    //}catch(e){
+        //直接返回错误
+       // return res.status(400).json(e);
+
+       // error middleware 集中处理validation error
+     //  next(e);
+   // }
+    
 }
 
 async function updateStudentById(req, res) {
@@ -55,7 +81,7 @@ async function updateStudentById(req, res) {
     return res.json(student);
 }
 
-// 删除学生的时候，可能很多课程和这个学生相关联，要找到所有课程并且update 
+
 
 async function deleteStudentById(req, res) {
     const { id } = req.params;
@@ -63,6 +89,7 @@ async function deleteStudentById(req, res) {
     if (!student) {
         return res.status(404).json({ error: "student not found" });
     }
+    // 删除学生的时候，可能很多课程和这个学生相关联，要找到所有课程并且update 
     await Course.updateMany({ students: id }, { $pull: { students: id } }).exec();
     return res.sendStatus(204);
 }
@@ -98,6 +125,9 @@ async function removeStudentFromCourse(req, res) {
     if (!student || !course) {
         return res.status(404).json({ error: "student or course not found" });
     }
+    //检测学生和课程是否有关系 
+    // student.course.includes(code)
+
     // 找到学生，把course删掉
     student = await Student.findByIdAndUpdate(
         id,
@@ -118,5 +148,6 @@ module.exports = {
     addStudent,
     deleteStudentById,
     addStudentToCourse,
-    removeStudentFromCourse
+    removeStudentFromCourse,
+    tryCatch
 }
