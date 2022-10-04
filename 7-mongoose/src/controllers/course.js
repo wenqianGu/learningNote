@@ -1,4 +1,5 @@
 const Course = require('../models/course');
+const Joi = require('joi');
 
 //获取数据是从module获取的
 async function getAllCourses(req, res) {
@@ -10,6 +11,18 @@ async function getAllCourses(req, res) {
     }
     const courses = await query.exec();
     return res.json(courses);
+    // 接口请求，当firstName超出规定的长度之后，会有错误；但是目前没处理；
+    // errorz抓取到只，是个对象
+    // method 1: course.find().exec().then(（res）=>{}).catch((err)=>{})
+    // method 2: try{} catch(e){}
+    // method 3: 
+    // Course.find(error, result) => {
+    //     if(error){
+    //         return ...
+    //     }
+    //     // result handling
+    //}
+
 }
 
 async function getCourseById(req, res) {
@@ -23,6 +36,11 @@ async function getCourseById(req, res) {
 
 async function addCourse(req, res) {
     const {code, name, description} = req.body;
+    const schema = Joi.object({
+        name:Joi.string().min(2).max(10).required(),
+        code:Joi.string().regex(/^[a-zA-Z]+[0-9]+$/)
+        //regux 开头结尾// ^ 以什么为开头 +[0-9]+$ ($前面是以XX为结尾)
+    })
     // if the course already exist,no further add action.
     const existingCourse = await Course.findById(code).exec();
     if(existingCourse){

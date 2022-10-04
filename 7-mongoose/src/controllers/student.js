@@ -2,21 +2,21 @@ const Course = require('../models/course');
 const Student = require('../models/student');
 
 
-
-function tryCatch(routeHandler){
-    //对所有的route handler都做try catch处理，
-    //问题：req res 从哪里来？
-    return async (req,res,next) =>{
-        try{
-            await routeHandler(req,res,next);
-         } catch(e) {
-             res.json(e);
-             //next(e);
-         }
-    }
-    
-    
-}
+// curring function 
+// high order function 高阶函数；前端比较常见； 
+//得到的一个参数，是一个函数，传入的函数有很多自己复杂逻辑； 
+// function tryCatch(routeHandler){
+//     //对所有的route handler都做try catch处理，
+//     //问题：req res 从哪里来？
+//     return async (req,res,next) =>{
+//         try{
+//             await routeHandler(req,res,next);
+//          } catch(e) {
+//              res.json(e);
+//              //next(e);
+//          }
+//     }   
+// }
 
 //获取数据是从module获取的
 async function getAllStudents(req, res) {
@@ -148,6 +148,5 @@ module.exports = {
     addStudent,
     deleteStudentById,
     addStudentToCourse,
-    removeStudentFromCourse,
-    tryCatch
+    removeStudentFromCourse
 }

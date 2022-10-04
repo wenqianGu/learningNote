@@ -138,3 +138,39 @@ if(error instanceof CustomError){
 
 }
 ```
+
+## Validation 
+- 在schema里面做validate 
+- Mongoose的验证，只有在save的时候才做验证； 比如 findByIdAndUpdate ->是不做数据的validate的 
+- 下面例子是在Mongoose里面做的数据验证 
+```js
+email:{
+        type: String,
+        required: true,
+        validate:{
+            validator:(email) =>{
+                // regex
+                // Joi
+                // validator.js 
+                // express-validator
+                // const valudation = Joi.string().email().validate(email);
+                // const {error} = valudation;
+                // if(error){
+                //     return false;
+                // }
+                // return true;
+                //如果返回true 验证成功； error有值代表false，所有 ！
+                return !Joi.string().email().validate(email).error;
+            },
+            msg:'Invalid email format',
+        }
+    },
+
+```
+* 后端永远都要做数据验证 
+    - 尽管前端做了邮件验证，但是永远不要相信请求发过来的数据
+    - 黑客通过postman发送模拟请求，数据不安全 
+    - 不要相信前端（接口）发送过来的任何数据
+* 在Mongoose外部，创建document之前做好数据验证 
+    - courseCode验证 
+    - 取到body里面的数据之后，是要做数据验证的；
