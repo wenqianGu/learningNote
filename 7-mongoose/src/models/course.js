@@ -15,5 +15,11 @@ module.exports = model('Course', new Schema({
     description: {
         type: String,
         default: 'this is a description'
-    }
+    },
+    students:[
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Student',
+        }
+    ]
 }))

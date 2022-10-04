@@ -17,7 +17,13 @@ const schema = new Schema ({
     email:{
         type: String,
         required: true,
-    }
+    },
+    courses:[
+        {
+            type:String,
+            ref:'Course'
+        }
+    ]
 })
 
 const Model = model('Student', schema);
