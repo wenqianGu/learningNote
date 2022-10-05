@@ -38,8 +38,15 @@ async function addCourse(req, res) {
     const {code, name, description} = req.body;
     const schema = Joi.object({
         name:Joi.string().min(2).max(10).required(),
-        code:Joi.string().regex(/^[a-zA-Z]+[0-9]+$/)
+        code:Joi.string().regex(/^[a-zA-Z]+[0-9]+$/).required(),
         //regux 开头结尾// ^ 以什么为开头 +[0-9]+$ ($前面是以XX为结尾)
+        description: Joi.string()
+    });
+    // req.body不能直接传递给mongoose；因为mongoose有一些字段，不想外部可以访问到；
+    // 此处定义的所有字段，是针对这个请求的；可以传递req.body传给这个schema，只会验证上面写的字段 name, code, description
+    schema.validateAsync(req.body,{
+        allowUnknown:true,
+        stripUnknown:true
     })
     // if the course already exist,no further add action.
     const existingCourse = await Course.findById(code).exec();
