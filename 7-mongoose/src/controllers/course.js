@@ -12,7 +12,7 @@ async function getAllCourses(req, res) {
     const courses = await query.exec();
     return res.json(courses);
     // 接口请求，当firstName超出规定的长度之后，会有错误；但是目前没处理；
-    // errorz抓取到只，是个对象
+    // error 抓取到只，是个对象
     // method 1: course.find().exec().then(（res）=>{}).catch((err)=>{})
     // method 2: try{} catch(e){}
     // method 3: 

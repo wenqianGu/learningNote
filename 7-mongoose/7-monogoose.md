@@ -174,3 +174,77 @@ email:{
 * 在Mongoose外部，创建document之前做好数据验证 
     - courseCode验证 
     - 取到body里面的数据之后，是要做数据验证的；
+
+# API Authentication & Authorization 
+* Authentication: Refers to verify who you are, so you need to use username and password to authentication.
+* Authorization: Refers to what you can do, for example access, edit or delete permissions to some documents and this happens after verification passes. 
+## JWT
+    - JSON Web Token are an open, industry standard RFC 7519 method for respresenting claims security 
+* 怎么保证token不被篡改？ 
+* 核心逻辑 signature 
+    - jwt.io 
+    - 三部分； 前面两部分是BASE64 编码的，
+      - Header  : 头部信息
+      - PAYLOAD : 数据信息， 明文存在，任何人都可以读取到；
+      - Verify Signature 
+```JS
+HMASCHA256(
+    base64UrlEncode(header) +"."+
+    base64UrlEncode(payload),
+    your-256-bit-secret
+)
+```
+    - 角色（role based）和(operational based) 操作权限，决定用户可以访问什么数据；
+## 加密 解密
+1. 加密，解密，哈希
+   * encrypt, decrypt, hash
+   * x ->X x通过算法加密成X
+   * X ->x 通过算法把X解密成x
+2. 密码password加密
+  * x -> Y 把X变成Y之后，没办法在解密逆转得到X； 密码是没办法通过解密逆转成之前的值
+  - 对比hash之后的值；
+  - 用户输入密码之后，通过hash得到Y，对比Y和数据库存储的Y是否相同；相同的话就是密码正确，否则密码错误；
+  - hash是加密的一种；
+3. 实际的密码管理操作
+    - 用统一的算法，管理1w用户名和密码； 
+      - dictionary attack 
+        - 黑客 用常用的密码进行hash计算；比如football，比对数据库1w条记录；最后匹配的密码就是football 
+      - 暴力破解
+        - aaa->bbb 因为只用一个算法加密，也能暴力破解出密码
+4. salt 
+   - 比如football是一个用户的密码，数据库存 hash之后的xxxx； 这样可以推断其他用户的密码 （包括football）
+   - 同样的密码，通过hash之后，得到不同的hash之后的字符串 
+     - football -salt1 -> xxxx1salt1
+     - football - salt2 -> xxxx2salt2 
+     - salt要明文存储，只有知道用的那个salt加密的，自己服务器才可以做密码验证
+   - 现在大概加到10-12轮 salt
+5. bcrypt
+   - bcrypt 
+   - 在server端做的；
+```js
+const bcrypt = require('bcrypt');
+
+const password = '123';
+
+
+//const salt = bcrypt.genSaltSync(12);
+const salt = '$2b$12$waJvtevVmLyeDHQoD2BGUe';
+//console.log(salt);
+const result = bcrypt.hashSync(password, salt); // 也可以把盐传给这个函数
+console.log(result);
+//salt是最终明文存储在hash之后的密码中的；
+// $2b$12$waJvtevVmLyeDHQoD2BGUe
+// $2b$12$waJvtevVmLyeDHQoD2BGUe-----Y9B/mym4DCRGYeRr8jjBAXoZiuRaVk2; 生成的密码是salt+hash之后的密码
+// 用户输入密码之后，数据库取出来上面hash的记录；
+// 然后 拿到salt + 用户输入的密码 -》用户hash 计算得到密码；
+
+// 随机加salt
+// 加盐之后，同样的密码生成的结果会完全不同；
+//$2b$12$LHYBnqKEgOaRKXbPL7ob1OyCCh2WUCGObDZuTqJszAQuWHZ.gaFOS
+//$2b$12$nGCkvTjpmBuznvvJg76DCu7lm1iljRsG7ar5aff4Ukmje1ceGMu2O
+```
+6. 实际项目中，如何使用加密算法 
+    * method 1： 在controller -user.js里面，创建user之后，保存之前
+    * method 2： 把这块加密逻辑抽离出来
+    * method 3： monogoose自己的一些方法 -》 models -> user.js
+   
