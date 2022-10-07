@@ -247,4 +247,19 @@ console.log(result);
     * method 1： 在controller -user.js里面，创建user之后，保存之前
     * method 2： 把这块加密逻辑抽离出来
     * method 3： monogoose自己的一些方法 -》 models -> user.js
-   
+
+### Login
+* post 请求 
+* JWT token 生成的必要条件
+  - npm i jsonwebtoken
+  - payload 
+  - secret 
+* 非必要的 token过期
+  - ？ 为什么需要过期
+  - access token -> 不过期的，用户可以一直用这个token操作所有事情 
+  - refresh token -> 根据refresh token 再次生成一个access token，用户没有感知的情况下
+    - refresh 有没有过期的逻辑？ 存在哪里？ 
+    - 需要把refresh token同时存在数据库 
+    - 类似于之前的session 和 cookie的概念 
+* 怎么签发JWT token，怎么设置过期 
+    - 

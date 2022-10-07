@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt');
 
 
 const schema = new Schema({
-    username:{
+    username: {
         type: String,
         require: true,
     },
-    password:{
-        type:String,
+    password: {
+        type: String,
         required: true,
     },
 });
@@ -17,16 +17,19 @@ const schema = new Schema({
 //通过mongoose user model生成的object都有这个属性；
 // controller -> user.js 可以直接调用user.hashPassword() 调用这个函数
 
-schema.methods.hashPassword = async function (){
-this.password = await bcrypt.hash(this.password,12);
+schema.methods.hashPassword = async function () {
+    this.password = await bcrypt.hash(this.password, 12);
 // 用异步函数； 因为要用this 用普通函数 （not 箭头函数）
     // 需要这个this指向实际调用这个hash password 函数的对象 (object)
     //  因为这个对象上（object）， 是一个User object； 所以可以访问到这个hashPassword的属性；
     //然后把加密过的密码赋值回 this.password.
 };
 
+schema.methods.validatePassword = async function (password) {
+    return bcrypt.compare(password, this.password)
+}
 
-const Model = model('User',schema);
+const Model  = model('User', schema);
 module.exports = Model;
 
 /**
