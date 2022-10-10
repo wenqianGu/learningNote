@@ -263,3 +263,25 @@ console.log(result);
     - 类似于之前的session 和 cookie的概念 
 * 怎么签发JWT token，怎么设置过期 
     - 
+* 签发完token之后，验证token以及相应的操作权限 
+    - 用户请求resource的时候
+      - 是否携带token，要验证 token是否有效 -》 检查步骤放middleware里面
+      - 在任何一个需要检查用户权限的请求，注入middleware 
+      - authGuard.js 
+
+###TO-do
+* 注册账号 
+  * https://portal.aws.amazon.com/billing/signup#/account
+  * https://www.mongodb.com/atlas/database 
+
+## authorization 
+* 禁用token？ -》一般禁用 access token 
+* JWT token签发之后，无状态的，token只要存在就一直有权限进行访问的；
+
+# role based / attributed based (operation)
+* 在model里面增加role
+* 在user controller 的login里面 token 生成的时候，增加role； 
+  * token 的payload里面有 role:admin 
+* 针对每一个role，有个权限管理 adminGuard.js / middleware
+  * 检查这个用户是不是有admin的权限；
+* 控制学生，只有admin才能添加 

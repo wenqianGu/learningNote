@@ -26,7 +26,7 @@ async function login(req, res) {
         return res.status(404).json({error: "invalid username or password"});
     }
     //这里应该返回一个token
-    const token = await generateToken({username});
+    const token = await generateToken({username, role:existingUser.role});
     return res.json({token});
 }
 

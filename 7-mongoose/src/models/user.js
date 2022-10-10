@@ -11,6 +11,9 @@ const schema = new Schema({
         type: String,
         required: true,
     },
+    role:{
+        type:String,
+    }
 });
 // Mongoose的User model （object）
 // hashPassword 存在哪里？ 存在于Mongoose的User object上面 -》什么是user object
