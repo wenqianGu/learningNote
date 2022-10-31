@@ -14,7 +14,7 @@ const Section = ({
     <Wrapper>
         <Title>{title}</Title>
         <div>{children}</div>
-    </Wrapper>
+    </Wrapper> 
 )
 
 export default Section;
