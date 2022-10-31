@@ -54,4 +54,5 @@
 ### 第二步：用React 创建一个静态版本
 * HTML + CSS 
 * overflow: hidden ->溢出这个view的时候，需要滑动
- 
+
+### 第三步：确定UI State的最小（且完整）表示

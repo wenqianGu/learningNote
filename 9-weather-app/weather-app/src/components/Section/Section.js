@@ -5,6 +5,7 @@ const Wrapper = styled.div`
 const Title = styled.div`
  margin-bottom: 1rem;
  font-size: 1.5rem;
+  text-align: left;
 `
 
 const Section = ({
