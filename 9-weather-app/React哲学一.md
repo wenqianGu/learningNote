@@ -55,4 +55,42 @@
 * HTML + CSS 
 * overflow: hidden ->溢出这个view的时候，需要滑动
 
-### 第三步：确定UI State的最小（且完整）表示
+### 第三步：确定UI State的最小（且完整）表示 
+### 第四步: 确定State放置的位置 （放置在正确的位置）
+* 变量提升 state lifting 
+* 考虑state是不是独立的
+* 拿到真实数据之后，考虑下是否需要这么多state
+```js
+const getWeather = (id) => axios.get('https://api.openweathermap.org/data/2.5/weather', {
+    params: {
+        id,
+        units: 'metric',
+        appid: '2466213f21b4b723d341e00a430a7673'
+    }
+})
+
+const Layout = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 64px 96px;
+`
+
+const LocalWeather = () => {
+    // useEffect给一个空依赖，代表这个effect只会运行一次，在localWeather渲染的时候，运行一次这个useEffect；
+    // 是否需要这么多的state？
+    useEffect(() => {
+        getWeather('2158177').then(({data}) => {
+            setCityName(data.name);
+            setTemperature(data.main.temp);
+            setMainWeather(data.weather[0].main);
+            setHumidity(data.main.humidity);
+            setWind(data.wind.speed);
+        })
+    }, [])
+    return (<div/>)
+};
+
+```
+* Uncaught TypeError: Cannot read properties of undefined (reading 'main')
+* 最常见的error之一
+* 只要获取数据，就要考虑loading的问题；
