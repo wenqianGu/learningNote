@@ -2,9 +2,10 @@
 import Temperature from "../../../Temperature";
 import styled from "styled-components";
 import WeatherItem from "./components/WeatherItem";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import getWeather from "../../../../apis/getWeather";
 
-const StyledTempature = styled(Temperature)`
+const StyledTemperature = styled(Temperature)`
   color: white;
   font-size: 5rem;
 `
@@ -28,18 +29,15 @@ const HumidityAndWind = styled.div`
 `
 
 const Weather = ({
-                     temperature,
-                     mainWeather,
-                     humidity,
-                     wind,
+                     data,
                  }) => (
     <div>
-        <StyledTempature value={temperature}/>
-        <MainWeather>{mainWeather}</MainWeather>
+        <StyledTemperature value={data.main.temp}/>
+        <MainWeather>{data.weather[0].main}</MainWeather>
         <HumidityAndWind>
-            <WeatherItem title="HUMIDITY">{humidity}</WeatherItem>
+            <WeatherItem title="HUMIDITY">{data.main.humidity}%</WeatherItem>
             <VerticalDivider/>
-            <WeatherItem title="WIND">{wind} </WeatherItem>
+            <WeatherItem title="WIND">{data.wind.speed} K/M </WeatherItem>
         </HumidityAndWind>
     </div>
 )

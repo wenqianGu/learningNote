@@ -5,15 +5,8 @@ import styled from 'styled-components';
 import Weather from "./components/Weather";
 import CityName from './components/CityName'
 import {useEffect, useState} from "react";
-import axios from "axios";
+import getWeather  from "../../apis/getWeather";
 
-const getWeather = (id) => axios.get('https://api.openweathermap.org/data/2.5/weather', {
-    params: {
-        id,
-        units: 'metric',
-        appid: '2466213f21b4b723d341e00a430a7673'
-    }
-})
 
 const Layout = styled.div`
   display: flex;
@@ -26,7 +19,7 @@ const LocalWeather = () => {
     const [loading, setLoading] = useState(true);
     // 1.undefined.
     // 2.data
-    console.log(data);
+    //console.log(data);
     // 1.执行。 第一次会执行
     // 2.第二次检查 [] dependency 发生改变？ -> useEffect不执行
     useEffect(() => {
@@ -45,11 +38,7 @@ const LocalWeather = () => {
     return (
         <BackgroundImage src="https://i.imgur.com/GhQZhaO.jpg">
             <Layout>
-                <Weather
-                    temperature={data.main.temp}
-                    mainWeather={data.weather[0].main}
-                    humidity={`${data.main.humidity}%`}
-                    wind={`${data.wind.speed} K/M`}/>
+                <Weather data={data}/>
                 <CityName name={data.name}></CityName>
             </Layout>
         </BackgroundImage>
