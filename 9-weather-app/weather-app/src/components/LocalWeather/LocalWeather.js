@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import Weather from "./components/Weather";
 import CityName from './components/CityName'
 import {useEffect, useState} from "react";
-import getWeather  from "../../apis/getWeather";
+import getWeather from "../../apis/getWeather";
 
 
 const Layout = styled.div`
@@ -13,7 +13,9 @@ const Layout = styled.div`
   justify-content: space-between;
   padding: 64px 96px;
 `
-const LocalWeather = () => {
+const LocalWeather = ({
+                          cityId,
+                      }) => {
     const [data, setDate] = useState();
     // loading state确保data有数据之后，再render-Local weather页面；
     const [loading, setLoading] = useState(true);
@@ -23,12 +25,12 @@ const LocalWeather = () => {
     // 1.执行。 第一次会执行
     // 2.第二次检查 [] dependency 发生改变？ -> useEffect不执行
     useEffect(() => {
-        getWeather('2158177').then(({data}) => {
+        getWeather(cityId).then(({data}) => {
             setDate(data);
             setLoading(false);
         })
-    }, [])
-    if(loading){
+    }, [cityId])
+    if (loading) {
         return (<div>loading...</div>)
     }
     //return null
@@ -38,7 +40,12 @@ const LocalWeather = () => {
     return (
         <BackgroundImage src="https://i.imgur.com/GhQZhaO.jpg">
             <Layout>
-                <Weather data={data}/>
+                <Weather
+                    temperature={data.main.temp}
+                    mainWeather={data.weather[0].main}
+                    humidity={data.main.humidity}
+                    windSpeed={data.wind.speed}
+                />
                 <CityName name={data.name}></CityName>
             </Layout>
         </BackgroundImage>

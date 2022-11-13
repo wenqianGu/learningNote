@@ -29,15 +29,18 @@ const HumidityAndWind = styled.div`
 `
 
 const Weather = ({
-                     data,
+                     temperature,
+                     mainWeather,
+                     humidity,
+                     windSpeed,
                  }) => (
     <div>
-        <StyledTemperature value={data.main.temp}/>
-        <MainWeather>{data.weather[0].main}</MainWeather>
+        <StyledTemperature value={temperature}/>
+        <MainWeather>{mainWeather}</MainWeather>
         <HumidityAndWind>
-            <WeatherItem title="HUMIDITY">{data.main.humidity}%</WeatherItem>
+            <WeatherItem title="HUMIDITY">{humidity}%</WeatherItem>
             <VerticalDivider/>
-            <WeatherItem title="WIND">{data.wind.speed} K/M </WeatherItem>
+            <WeatherItem title="WIND">{windSpeed} K/M </WeatherItem>
         </HumidityAndWind>
     </div>
 )

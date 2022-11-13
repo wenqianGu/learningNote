@@ -178,6 +178,17 @@ const Weather = ({
             setLoading(false);
         })
     }, []);
-    return ()
+    return (<div></div>)
 }
 ```
+
+* 兄弟关系的传参
+  * 提升到最小的共同component即可；
+  * cityID
+  * LocalWeather/Forecast -> App 
+
+### 添加反向数据流
+* 添加数据流
+* 当component (CityWeather) 没有setCityId和id时，向上父类component(OtherCities/App)寻找；
+* 代码优化：考虑命名是否合理；审视代码；
+* setCityId -> setCurrentCityId
