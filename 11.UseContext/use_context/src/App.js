@@ -10,6 +10,7 @@ function AppRouter() {
 
   const providerValue = useMemo(()=>({user, setUser}),[user, setUser])
   // this prevents this provider value (value / setValue) from changing unless the value or set value changes. 
+  // this prevents this provider value (user / setUser) from changing unless the user or set User changes. 
 
   return (
     <Router>
