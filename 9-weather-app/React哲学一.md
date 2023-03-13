@@ -192,3 +192,5 @@ const Weather = ({
 * 当component (CityWeather) 没有setCityId和id时，向上父类component(OtherCities/App)寻找；
 * 代码优化：考虑命名是否合理；审视代码；
 * setCityId -> setCurrentCityId
+
+### 接下来需要学的内容： 路由，context，测试；
